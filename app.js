@@ -13,7 +13,7 @@ const h3 = document.querySelector(`h3`);
 // 2b. 
 h3.addEventListener(`mouseleave`, () => {
     alert(`You hovered over the h3 element! Congrats!`);
-})
+},{once: true}); // makes the alert stop after the first time
 
 // 3a. 
 const form = document.querySelector(`form`);
@@ -28,10 +28,18 @@ form.addEventListener(`submit`, () => {
 const darkMode = document.querySelector(`#dm`);
 
 // 4b. 
-const elements = document.querySelector(`body`);
-// const elements = document.querySelector(`*`);
-darkMode.addEventListener(`click`, function() {
-    elements.classList.toggle(`dark-mode`);
+// const elements = document.querySelector(`body`);
+// // const elements = document.querySelector(`*`);
+// darkMode.addEventListener(`click`, function() {
+//     elements.classList.toggle(`dark-mode`);
+// })
+
+// OR
+const everyElement = document.querySelectorAll(`*`);
+darkMode.addEventListener(`click`, () => {
+    for (element of everyElement) {
+        element.classList.toggle(`dark-mode`);
+    }
 })
 
 // 5a. 
@@ -39,7 +47,9 @@ const times = document.querySelector(`#times`);
 
 // 5b. 
 
-var count = 0;
+// var count = 0;
+let count = 0;
+
 times.addEventListener(`click`, () => {
     count ++;
     if (count <= 2) {
@@ -47,7 +57,8 @@ times.addEventListener(`click`, () => {
     } else if (count === 3) {
         alert(`OH NO! This button is NOT going to work anymore`);
     }else {
-        return false;
+        // return false;
+        times.disabled = true;
+        // this one makes disabled button!
     }
 })
-    
